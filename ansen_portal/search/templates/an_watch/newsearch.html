@@ -1,0 +1,47 @@
+{% extends "tabbed.html" %}
+{% block content %}
+
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      Sélectionnez vos paramètres de recherche.
+    </div>
+
+    <div class="row">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">Organisme</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Assemblée</a></li>
+          <li><a href="#">Sénat</a></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">Type</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">Personnes</a></li>
+          <li><a href="#">Amendements</a></li>
+          <li><a href="#">Discussions</a></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <input type="text" class="form-control" placeholder="Recherche...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"><a href="an/">Go!</a></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

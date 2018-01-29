@@ -1,0 +1,14 @@
+###################
+# Deploying Ansene
+###################
+- name: Git clone Storer
+  git: repo=git@github.com:blawesom/ansen-datastorer.git
+       dest=/opt/ansene/ansen-datastorer
+       accept_hostkey=yes
+       force=yes
+       key_file=/root/.ssh/id_rsa
+
+- name: Copy conf for Supervirsord
+  template: src=supervisord.conf.j2 dest=/etc/supervisord.d/datastorer.conf
+  notify:
+  - restart supervisor

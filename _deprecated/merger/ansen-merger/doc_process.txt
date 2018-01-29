@@ -1,0 +1,18 @@
+get list of files
+
+for each file
+    check if not exist local (48h cache)
+    requests file from the storer
+    save file
+
+for each saved
+    apply watermark
+    append saved to merged
+
+store saved s3 ? and generate link
+
+delete saved
+
+- - - - - - - - -
+
+Garbage collector delete all files in /tmp/ansene older than 48h (every day at 20h)

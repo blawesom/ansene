@@ -1,0 +1,18 @@
+[program:transformer]
+command=/usr/bin/python3.5 /opt/ansene/ansen-transformer/ansen-transformer/server.py
+autostart=true
+autorestart=true
+startretries=10000
+stdout_logfile=/var/log/ansene/stdout_transformer.log
+stdout_logfile_maxbytes=0
+stderr_logfile=/var/log/ansene/stderr_transformer.log
+stderr_logfile_maxbytes=0
+
+
+[program:worker]
+directory=/opt/ansene/ansen-transformer/ansen-transformer
+environment=C_FORCE_ROOT=true
+command=/usr/bin/celery -A distributer worker --concurrency=10
+autostart=true
+autorestart=true
+startretries=10000

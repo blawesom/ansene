@@ -1,0 +1,15 @@
+{% extends "tabbed.html" %}
+{% block content %}
+<div class="container">
+  {% for item in news_items %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ item.title }} - {{ item.date }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ item.body }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

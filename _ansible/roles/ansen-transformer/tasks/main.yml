@@ -1,0 +1,22 @@
+###################
+# Deploying Ansene
+###################
+- name: Git clone Transformer
+  git: repo=git@github.com:blawesom/ansen-transformer.git
+       dest=/opt/ansene/ansen-transformer
+       accept_hostkey=yes
+       force=yes
+       key_file=/root/.ssh/id_rsa
+
+- name: Install dependencies
+  yum: name=postgresql-devel state=present
+
+- name: Install requirements
+  pip: requirements=/opt/ansene/ansen-transformer/requirements.txt executable=pip3.5
+
+- name: Copy conf for Supervirsord
+  template: src=supervisord.conf.j2 dest=/etc/supervisord.d/transformer.conf
+  notify:
+  - restart supervisor
+
+# Needs to add crontab

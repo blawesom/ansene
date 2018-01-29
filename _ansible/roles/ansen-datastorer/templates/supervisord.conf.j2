@@ -1,0 +1,9 @@
+[program:storer]
+command=/usr/bin/python3.5 /opt/ansene/ansen-datastorer/ansen-datastorer/server.py
+autostart=true
+autorestart=true
+startretries=10000
+stdout_logfile=/var/log/ansene/stdout_datastorer.log
+stdout_logfile_maxbytes=0
+stderr_logfile=/var/log/ansene/stderr_datastorer.log
+stderr_logfile_maxbytes=0

@@ -1,0 +1,5 @@
+[ansene]
+ansene ansible_host=
+
+[postgresql-server]
+postgresql ansible_host=

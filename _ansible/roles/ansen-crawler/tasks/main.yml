@@ -1,0 +1,15 @@
+###################
+# Deploying Ansene
+###################
+
+- name: Git clone Crawler
+  git: repo=git@github.com:blawesom/ansen-crawler.git
+       dest=/opt/ansene/ansen-crawler
+       accept_hostkey=yes
+       force=yes
+       key_file=/root/.ssh/id_rsa
+
+- name: Copy conf for Supervirsord
+  template: src=supervisord.conf.j2 dest=/etc/supervisord.d/crawler.conf
+  notify:
+  - restart supervisor

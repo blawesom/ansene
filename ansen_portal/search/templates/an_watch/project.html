@@ -1,0 +1,33 @@
+{% extends "tabbed.html" %}
+{% block content %}
+<div class="page-header">
+  <h1>Liste des amendements</h1>
+</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Résultats</div>
+  <div class="panel-body">
+    <p>Liste des amendements passés pour le projet {{ project.name }} ({{ project.id }})</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+      <tr>
+          <th>Exam id</th>
+          <th>Amdendement id</th>
+          <th>Source</th>
+          <th>Sort</th>
+          <th>Date de création</th>
+      </tr>
+    {% for item in item_list %}
+      <tr>
+          <td>{{ item.exam_id }}</td>
+          <td>{{ item.amd_id }}</td>
+          <td><a href='{{ item.url }}'>Lien</a></td>
+          <td>{{ item.sort }}</td>
+          <td>{{ item.creation_date }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

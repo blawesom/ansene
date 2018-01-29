@@ -1,0 +1,42 @@
+###################
+# Supervisor
+###################
+- name: Install Supervisor
+  yum: name=supervisor state=latest
+
+- name: Conf Supervisor
+  template: src=supervisord.conf.j2 dest=/etc/supervisord.conf
+
+- name: Start supervisor service
+  service: name=supervisord state=started enabled=true
+
+###################
+# Python
+###################
+
+- name: Get IUS rpm from website
+  get_url: url=https://centos7.iuscommunity.org/ius-release.rpm dest=/root/ius-release.rpm
+
+- name: Install IUS rpm
+  yum: name=/root/ius-release.rpm state=present
+
+- name: Install python3
+  yum: name=python35u state=installed
+
+- name: Install pip and dev for python3
+  yum: name={{ item }} state=installed
+  with_items:
+    - python35u-pip
+    - python35u-devel
+    - python35u-lxml
+    - python35u-postgresql
+
+- name: Make aliases
+  lineinfile:
+    dest=/root/.bashrc
+    line="alias python3='/usr/bin/python35u'"
+    line="alias pip='/usr/bin/pip3.5'"
+    owner=root
+    state=present
+    insertafter=EOF
+    create=True

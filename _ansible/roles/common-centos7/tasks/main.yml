@@ -1,0 +1,55 @@
+###################
+# Set users and hostname
+###################
+
+- name: Set hostname
+  hostname: name={{ inventory_hostname }}
+
+###################
+# Security & monitoring
+###################
+- name: Install fail2ban
+  yum: name=fail2ban state=present
+
+- name: Start fail2ban service
+  service: name=fail2ban state=started enabled=true
+
+- name: Install apache
+  yum: name=httpd state=present
+
+- name: start apache (edit /etc/httpd/conf.d/munin.conf (comment auth))
+  service: name=httpd state=started enabled=true
+
+- name: Install munin
+  yum: name=munin state=latest
+
+- name: Allow remote connection on web interface
+  lineinfile: dest=/etc/munin/munin-node.conf
+              line='cidr_allow 0.0.0.0/0'
+              state=present
+              create=yes
+              insertafter=EOF
+
+- name: Allow non logged access to web interface
+  copy: src=munin.conf dest=/etc/httpd/conf.d/munin.conf
+
+- name: Start munin service
+  service: name=munin-node state=started enabled=true
+
+###################
+# Misc. tools
+###################
+- name: Install usefull system tools
+  yum: name={{ item }} state=present
+  with_items:
+    - vim
+    - htop
+    - git
+    - libxml2
+    - gcc
+
+- name: Copy of the ssh key for git clone
+  copy: src=git_temp.rsa dest=/root/.ssh/id_rsa owner=root mode=0600
+
+#- name: Add Github to the list of known hosts so that we can clone the repo via SSH
+#  shell: ssh-keyscan -H github.com >> ~/.ssh/known_hosts

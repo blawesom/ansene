@@ -1,0 +1,19 @@
+---
+  - hosts: postgresql-server
+    remote_user: root
+    gather_facts: yes
+    roles:
+      - common-centos7
+      - postgresql-centos7
+
+  - hosts: ansene
+    remote_user: root
+    gather_facts: yes
+    roles:
+      - common-centos7
+      - python-centos7
+      - rabbitmq-centos7
+      - ansen-common
+      - ansen-transformer
+      - ansen-crawler
+      - ansen-datastorer

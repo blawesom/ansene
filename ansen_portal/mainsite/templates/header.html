@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Ansene v0.1</title>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type = "text/css"/>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+	<div class="container-fluid">
+		<div id="header">
+	    <a href="/"><img src="{% static 'img/ansene.png' %}" width="30%" height="30%" alt="ansene-logo"></a>
+	  </div>
+	  <div>
+		   {% block main %}
+		   {% endblock %}
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+[transformer]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5000
+
+[rabbitmq]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5672
+
+[crawler]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5010
+
+[storer]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5020
+
+[downloader]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5030
+
+[merger]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5040
+
+[portal]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5050
+
+[ui]
+server={{ hostvars['ansene']['ansible_host'] }}
+port=5080
+
+[postgre]
+server ={{ hostvars['postgresql']['ansible_host'] }}
+port = 5432
+
+[mailer]
+apikey =

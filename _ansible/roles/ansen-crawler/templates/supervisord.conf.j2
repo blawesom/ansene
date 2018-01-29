@@ -1,0 +1,9 @@
+[program:crawler]
+command=/usr/bin/python3.5 /opt/ansene/ansen-crawler/ansen-crawler/server.py
+autostart=true
+autorestart=true
+startretries=10000
+stdout_logfile=/var/log/ansene/stdout_crawler.log
+stdout_logfile_maxbytes=0
+stderr_logfile=/var/log/ansene/stderr_crawler.log
+stderr_logfile_maxbytes=0

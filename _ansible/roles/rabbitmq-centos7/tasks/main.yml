@@ -1,0 +1,21 @@
+###################
+# Messaging
+###################
+- name: Install RabbitMQ
+  yum: name=rabbitmq-server.noarch state=latest
+
+- name: Start RabbitMQ service
+  service: name=rabbitmq-server state=started enabled=true
+
+- name: Add RabbitMQ vhost
+  rabbitmq_vhost: name={{ v_host }} state=present
+
+- name: Configure RabbitMQ User
+  rabbitmq_user:  user={{ user }}
+                  password={{ password }}
+                  vhost={{ v_host }}
+                  configure_priv='.*'
+                  read_priv='.*'
+                  write_priv='.*'
+                  state=present
+  notify: restart rabbitmq

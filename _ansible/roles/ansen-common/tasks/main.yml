@@ -1,0 +1,11 @@
+###################
+# Customization and deploy of config
+###################
+- name: Creating install dir
+  file: path=/opt/ansene state=directory
+
+- name: Creating log dir
+  file: path=/var/log/ansene state=directory
+
+- name: Templating config.ini
+  template: src=config.ini.j2 dest=/opt/ansene/config.ini owner=root

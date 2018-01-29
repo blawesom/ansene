@@ -1,0 +1,60 @@
+# Exemples pour récupération des AMD de l'AN
+
+1) TR_to_ST (GET):
+request.get('/an')
+
+2) Return:
+[{'projet_id': 11111111, 'exam_id' : 222222, 'nb_amd' : 333 },
+ {'projet_id': 44444444, 'exam_id' : 555555, 'nb_amd' : 666 } ]
+
+ - - - - - - - - - - - - - - - -
+
+1) TR_to_CR (GET):
+request.get('/an')
+
+2) Return:
+ { DATA FROM AN } => NEEDS TRANSFORMATION
+
+
+# On constate un différentiel sur le nb d'amendements sur un examen, ou un nouvel examen
+
+3) TR_to_ST (GET):
+request.get('/an/proj_id/exam_id')
+
+4) Return:
+[ {'amd_id' : xxxxxxx, 'exam_id': yyyyyyy, 'proj_id': zzzzzzz },
+  {'amd_id' : xxxxxxx, 'exam_id': yyyyyyy, 'proj_id': zzzzzzz } ]
+
+ - - - - - - - - - - - - - - - -
+
+3) TR_to_CR (GET):
+request.get('/an/proj_id/exam_id')
+
+4) Return:
+{ DATA FROM AN } => NEEDS TRANSFORMATION
+
+
+# Transformer en action, push le différentiel au storer
+
+5) TR_to_ST (POST):
+request.post('/an/amd')
+
+payload=
+[{'amd_id' : xxxxxxx,
+ 'exam_id': yyyyyyy,
+ 'proj_id': zzzzzzz,
+ 'url'    : 'http://xxx.xxx.xxx',
+ 'n_article': www,
+ 's_type' : vvvvvvvv,
+ 'sort' : hhhhhhhh,
+ 'signataires' : 'jjjjjjjjj, iiiiiiiii, kkkkkkk'
+ 'pull_date': 00000000 },
+{'amd_id' : xxxxxxx,
+ 'exam_id': yyyyyyy,
+ 'proj_id': zzzzzzz,
+ 'url'    : 'http://xxx.xxx.xxx',
+ 'n_article': www,
+ 's_type' : vvvvvvvv,
+ 'sort' : hhhhhhhh,
+ 'signataires' : 'jjjjjjjjj, iiiiiiiii, kkkkkkk'
+ 'pull_date': 00000000 }]
